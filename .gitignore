@@ -1,9 +1,9 @@
+# Mac
+.DS_Store
+
 # Gradle files
 .gradle/
 build/
-
-# Mac
-.DS_Store
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -34,3 +34,6 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# MS Word opened files
+~$*.doc*
