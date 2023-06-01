@@ -1,11 +1,12 @@
-package com.jesusfervid.telemetry
+package com.jesusfervid.telemetry.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.jesusfervid.telemetry.R
 import com.jesusfervid.telemetry.databinding.FragmentFirstBinding
 
 /**
