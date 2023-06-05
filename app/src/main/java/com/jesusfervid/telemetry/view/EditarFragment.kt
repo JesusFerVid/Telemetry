@@ -14,34 +14,34 @@ import com.jesusfervid.telemetry.databinding.FragmentEditarBinding
  */
 class EditarFragment : Fragment() {
 
-    private var _binding: FragmentEditarBinding? = null
+  private var _binding : FragmentEditarBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+  // This property is only valid between onCreateView and
+  // onDestroyView.
+  private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+  override fun onCreateView(
+    inflater : LayoutInflater, container : ViewGroup?,
+    savedInstanceState : Bundle?
+  ) : View? {
 
-        _binding = FragmentEditarBinding.inflate(inflater, container, false)
-        return binding.root
+    _binding = FragmentEditarBinding.inflate(inflater, container, false)
+    return binding.root
 
+  }
+
+  override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    binding.buttonSecond.setOnClickListener {
+      Snackbar.make(it, "Averiado, disculpa las molestias", Snackbar.LENGTH_SHORT)
+        .setAnchorView(R.id.fab)
+        .show()
     }
+  }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonSecond.setOnClickListener {
-            Snackbar.make(it, "Averiado, disculpa las molestias", Snackbar.LENGTH_SHORT)
-              .setAnchorView(R.id.fab)
-              .show()
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+  }
 }

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/ListaFragment">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/nav_graph"
+  app:startDestination="@id/ListaFragment">
 
-    <fragment
-        android:id="@+id/ListaFragment"
-        android:name="com.jesusfervid.telemetry.view.ListaFragment"
-        android:label="@string/lista_fragment_label"
-        tools:layout="@layout/fragment_lista">
+  <fragment
+    android:id="@+id/ListaFragment"
+    android:name="com.jesusfervid.telemetry.view.ListaFragment"
+    android:label="@string/lista_fragment_label"
+    tools:layout="@layout/fragment_lista">
 
-        <action
-            android:id="@+id/actionEditar"
-            app:destination="@id/EditarFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/EditarFragment"
-        android:name="com.jesusfervid.telemetry.view.EditarFragment"
-        android:label="@string/editar_fragment_label"
-        tools:layout="@layout/fragment_editar"/>
+    <action
+      android:id="@+id/actionEditar"
+      app:destination="@id/EditarFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/EditarFragment"
+    android:name="com.jesusfervid.telemetry.view.EditarFragment"
+    android:label="@string/editar_fragment_label"
+    tools:layout="@layout/fragment_editar" />
 </navigation>

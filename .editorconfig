@@ -3,7 +3,7 @@
 # top-most EditorConfig file
 root = true
 
-[*.{kt,java,xml,gradle,md}]
+[*.{kt,kts,java,xml,gradle,md}]
 charset = utf-8
 indent_style = space
 indent_size = 2

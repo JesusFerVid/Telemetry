@@ -14,32 +14,32 @@ import com.jesusfervid.telemetry.databinding.FragmentListaBinding
  */
 class ListaFragment : Fragment() {
 
-    private var _binding: FragmentListaBinding? = null
+  private var _binding : FragmentListaBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+  // This property is only valid between onCreateView and
+  // onDestroyView.
+  private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+  override fun onCreateView(
+    inflater : LayoutInflater, container : ViewGroup?,
+    savedInstanceState : Bundle?
+  ) : View? {
 
-        _binding = FragmentListaBinding.inflate(inflater, container, false)
-        return binding.root
+    _binding = FragmentListaBinding.inflate(inflater, container, false)
+    return binding.root
 
+  }
+
+  override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    binding.buttonFirst.setOnClickListener {
+      findNavController().navigate(R.id.actionEditar)
     }
+  }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.actionEditar)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+  }
 }
