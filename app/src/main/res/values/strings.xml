@@ -6,7 +6,6 @@
   <string name="editar_fragment_label">Añadir revisión</string>
   <string name="next">Next</string>
   <string name="previous">Previous</string>
-
   <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -42,5 +41,58 @@
         sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
+  </string>
+
+  <!-- Todos los tipos de vehículo -->
+  <string name="coche">Coche</string>
+  <string name="moto">Motocicleta</string>
+  <string name="ciclomotor">Ciclomotor</string>
+  <string name="furgoneta">Furgoneta</string>
+  <string name="camion">Camión</string>
+
+  <string-array name="tipos_vehiculo">
+    <item>@string/coche</item>
+    <item>@string/moto</item>
+    <item>@string/ciclomotor</item>
+    <item>@string/furgoneta</item>
+    <item>@string/camion</item>
+  </string-array>
+
+  <!-- Todos los tipos de líneas de revisión -->
+  <string name="cam_neu">Cambio de neumáticos</string>
+  <string name="cru_neu">Cruce de neumáticos</string>
+  <string name="ace">Cambio de aceite</string>
+  <string name="f_ace">Cambio de filro de aceite</string>
+  <string name="f_air">Cambio de filtro de aire</string>
+  <string name="f_com">Cambio de filtro de combustible</string>
+  <string name="f_hab">Cambio de filtro de habitáculo</string>
+  <string name="p_fre">Cambio de pastillas de freno</string>
+  <string name="d_fre">Cambio de discos de freno</string>
+  <string name="l_fre">Cambio de líquido de frenos</string>
+  <string name="amo">Cambio de amortiguadores</string>
+  <string name="ant">Cambio de líquido anticongelante</string>
+  <string name="niv">Revisión de niveles</string>
+  <string name="l_tra">Cambio de líquido de transmisión</string>
+  <string name="esc">Cambio de escobillas</string>
+  <string name="c_dis">Cambio de correa de distribución</string>
+
+  <!-- Líneas de revisión de coche -->
+  <string-array name="lr_coche">
+    <item>@string/cam_neu</item>
+    <item>@string/cru_neu</item>
+    <item>@string/ace</item>
+    <item>@string/f_ace</item>
+    <item>@string/f_air</item>
+    <item>@string/f_com</item>
+    <item>@string/f_hab</item>
+    <item>@string/p_fre</item>
+    <item>@string/d_fre</item>
+    <item>@string/l_fre</item>
+    <item>@string/amo</item>
+    <item>@string/ant</item>
+    <item>@string/niv</item>
+    <item>@string/l_tra</item>
+    <item>@string/esc</item>
+    <item>@string/c_dis</item>
+  </string-array>
 </resources>
