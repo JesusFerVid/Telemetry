@@ -17,7 +17,7 @@ import kotlinx.parcelize.Parcelize
       entity = Vehiculo::class,
       parentColumns = ["id"],
       childColumns = ["id_vehiculo"],
-      onDelete = ForeignKey.CASCADE
+      onDelete = ForeignKey.CASCADE,
     )
   ]
 )
@@ -28,5 +28,5 @@ data class Revision(
   val km : Int,
   val kmSiguiente : Int,
   val observaciones: String? = null,
-  @PrimaryKey(autoGenerate = true) val id : Long? = null
+  @PrimaryKey(autoGenerate = true) val id : Long? = null,
 ) : Parcelable

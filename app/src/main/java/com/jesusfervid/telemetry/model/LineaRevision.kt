@@ -14,7 +14,7 @@ import kotlinx.parcelize.Parcelize
       entity = Revision::class,
       parentColumns = ["id"],
       childColumns = ["id_revision"],
-      onDelete = ForeignKey.CASCADE
+      onDelete = ForeignKey.CASCADE,
     )
   ]
 )
@@ -24,5 +24,5 @@ data class LineaRevision(
   val tipo : String,
   val realizada : Boolean = false,
   val km : Int? = null,
-  @PrimaryKey(autoGenerate = true) val id : Long? = null
+  @PrimaryKey(autoGenerate = true) val id : Long? = null,
 ) : Parcelable

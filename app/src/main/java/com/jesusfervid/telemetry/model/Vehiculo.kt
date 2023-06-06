@@ -12,5 +12,5 @@ data class Vehiculo(
  val nombre : String = tipo,
  val modelo : String? = null,
  val anyo : Int? = null,
-  @PrimaryKey(autoGenerate = true) val id : Long? = null
+  @PrimaryKey(autoGenerate = true) val id : Long? = null,
 ) : Parcelable
