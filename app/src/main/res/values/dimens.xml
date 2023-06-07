@@ -1,3 +1,20 @@
 <resources>
   <dimen name="fab_margin">16dp</dimen>
+  <dimen name="margin_xs">4dp</dimen>
+  <dimen name="margin_s">8dp</dimen>
+  <dimen name="margin_m">16dp</dimen>
+  <dimen name="margin_l">24dp</dimen>
+  <dimen name="margin_xl">32dp</dimen>
+  <dimen name="margin_xxl">64dp</dimen>
+  <dimen name="margin_default">@dimen/margin_m</dimen>
+  <dimen name="padding_default">@dimen/margin_s</dimen>
+  <dimen name="corner_radius_s">8dp</dimen>
+  <dimen name="corner_radius_m">16dp</dimen>
+  <dimen name="corner_radius_l">24dp</dimen>
+  <dimen name="corner_radius_default">@dimen/corner_radius_m</dimen>
+  <dimen name="icon_s">20dp</dimen>
+  <dimen name="icon_m">24dp</dimen>
+  <dimen name="icon_l">40dp</dimen>
+  <dimen name="icon_xl">48dp</dimen>
+  <dimen name="card_elevation">2dp</dimen>
 </resources>

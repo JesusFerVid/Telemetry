@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  app:cardCornerRadius="@dimen/corner_radius_default"
+  app:cardElevation="@dimen/card_elevation"
+  app:cardUseCompatPadding="true">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/clyItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+      android:id="@+id/ivTipoVehiculo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/padding_default"
+      android:layout_marginTop="@dimen/padding_default"
+      android:layout_marginBottom="@dimen/padding_default"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/coche"/>
+
+    <TextView
+      android:id="@+id/tvNombreVehiculo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/margin_s"
+      android:layout_marginTop="@dimen/padding_default"
+      android:ellipsize="end"
+      android:gravity="center_vertical"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toTopOf="@+id/tvDescripcionVehiculo"
+      app:layout_constraintStart_toEndOf="@+id/ivTipoVehiculo"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="Nombre del vehículo"/>
+
+    <TextView
+      android:id="@+id/tvDescripcionVehiculo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_s"
+      android:layout_marginBottom="@dimen/padding_default"
+      android:textColor="@color/grey"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/tvNombreVehiculo"
+      app:layout_constraintTop_toBottomOf="@+id/tvNombreVehiculo"
+      tools:text="Coche"/>
+
+    <ImageView
+      android:id="@+id/ivBorrarVehiculo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/padding_default"
+      android:layout_marginEnd="@dimen/padding_default"
+      android:layout_marginBottom="@dimen/padding_default"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/borrar"/>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
