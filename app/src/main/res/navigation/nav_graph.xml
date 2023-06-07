@@ -3,17 +3,17 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/nav_graph"
-  app:startDestination="@id/UsuarioFragment">
+  app:startDestination="@id/VehiculosFragment">
 
   <fragment
-    android:id="@+id/UsuarioFragment"
-     android:name="com.jesusfervid.telemetry.view.UsuarioFragment"
-    android:label="@string/usuario_fragment_label"
-    tools:layout="@layout/fragment_usuario">
+    android:id="@+id/VehiculosFragment"
+    android:name="com.jesusfervid.telemetry.view.VehiculosFragment"
+    android:label="@string/vehiculos_fragment_label"
+    tools:layout="@layout/fragment_vehiculos">
 
     <action
       android:id="@+id/actionEditar"
-      app:destination="@id/EditarFragment" />
+      app:destination="@id/EditarFragment"/>
   </fragment>
   <fragment
     android:id="@+id/EditarFragment"

@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.jesusfervid.telemetry.R
-import com.jesusfervid.telemetry.databinding.FragmentUsuarioBinding
+import com.jesusfervid.telemetry.databinding.FragmentVehiculosBinding
 
 /**
- * "Usuario" no es una entidad como tal, más bien un nombre conveniente.
- * En este Fragment se muestra la lista de vehículos del... Usuario.
+ * En este Fragment se muestra la lista de vehículos del usuario.
  */
-class UsuarioFragment : Fragment() {
+class VehiculosFragment : Fragment() {
 
-  private var _binding : FragmentUsuarioBinding? = null
+  private var _binding : FragmentVehiculosBinding? = null
 
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -26,7 +25,7 @@ class UsuarioFragment : Fragment() {
     savedInstanceState : Bundle?
   ) : View? {
 
-    _binding = FragmentUsuarioBinding.inflate(inflater, container, false)
+    _binding = FragmentVehiculosBinding.inflate(inflater, container, false)
     return binding.root
 
   }
