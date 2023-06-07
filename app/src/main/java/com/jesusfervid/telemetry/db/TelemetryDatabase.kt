@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.jesusfervid.telemetry.dao.LineaRevisionDao
+import com.jesusfervid.telemetry.dao.RevisionDao
+import com.jesusfervid.telemetry.dao.VehiculoDao
 import com.jesusfervid.telemetry.model.LineaRevision
 import com.jesusfervid.telemetry.model.Revision
 import com.jesusfervid.telemetry.model.Vehiculo
@@ -24,7 +27,7 @@ import com.jesusfervid.telemetry.model.Vehiculo
 abstract class TelemetryDatabase : RoomDatabase() {
   abstract fun vehiculoDao() : VehiculoDao
   abstract fun revisionDao() : RevisionDao
-  abstract fun lineaRevisionDao() :  LineaRevisionDao
+  abstract fun lineaRevisionDao() : LineaRevisionDao
 
   // Creamos un Singleton que sea thread-safe, es decir, que no se permitirá
   // que dos hilos intenten crear una instancia a la vez.
