@@ -2,7 +2,7 @@
   <string name="app_name">Telemetry</string>
   <string name="action_settings">Settings</string>
   <!-- Strings used for fragments for navigation -->
-  <string name="lista_fragment_label">Lista de Revisiones</string>
+  <string name="usuario_fragment_label">Lista de Vehículos</string>
   <string name="editar_fragment_label">Añadir revisión</string>
   <string name="next">Next</string>
   <string name="previous">Previous</string>
