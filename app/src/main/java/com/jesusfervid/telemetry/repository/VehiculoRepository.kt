@@ -27,7 +27,6 @@ object VehiculoRepository {
   }
 
   // Estas funciones se encargan de llamar a la función adecuada en los DAO.
-  // Trabajan con corrutinas, para no bloquear el hilo principal.
   suspend fun add(vehiculo : Vehiculo) = vehiculoDao.add(vehiculo)
   suspend fun addAll(vehiculos : List<Vehiculo>) = vehiculoDao.addAll(vehiculos)
   suspend fun modify(vehiculo : Vehiculo) = vehiculoDao.modify(vehiculo)

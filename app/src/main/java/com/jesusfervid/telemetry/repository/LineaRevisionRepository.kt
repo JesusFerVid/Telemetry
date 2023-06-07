@@ -27,7 +27,6 @@ object LineaRevisionRepository {
   }
 
   // Estas funciones se encargan de llamar a la función adecuada en los DAO.
-  // Trabajan con corrutinas, para no bloquear el hilo principal.
   suspend fun add(linea : LineaRevision) = lineaRevisionDao.add(linea)
   suspend fun addAll(lineas : List<LineaRevision>) = lineaRevisionDao. addAll(lineas)
   suspend fun modify(linea : LineaRevision) = lineaRevisionDao.modify(linea)

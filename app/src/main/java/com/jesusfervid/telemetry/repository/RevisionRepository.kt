@@ -27,7 +27,6 @@ object RevisionRepository {
   }
 
   // Estas funciones se encargan de llamar a la función adecuada en los DAO.
-  // Trabajan con corrutinas, para no bloquear el hilo principal.
   suspend fun add(revision : Revision) = revisionDao.add(revision)
   suspend fun addAll(revisiones : List<Revision>) = revisionDao.addAll(revisiones)
   suspend fun modify(revision : Revision) = revisionDao.modify(revision)
