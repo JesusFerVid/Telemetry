@@ -33,7 +33,7 @@ class VehiculosAdapter() : RecyclerView.Adapter<VehiculosAdapter.VehiculosViewHo
   }
 
   /** Actualiza la lista y notifica al adaptador para redibujar el ReciclerView */
-  fun setVehiculos(vehiculos: List<Vehiculo>){
+  fun setListaVehiculos(vehiculos: List<Vehiculo>){
     this.vehiculos = vehiculos
     notifyDataSetChanged()
   }

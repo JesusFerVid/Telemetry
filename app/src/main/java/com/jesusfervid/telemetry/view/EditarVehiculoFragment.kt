@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import com.jesusfervid.telemetry.R
 import com.jesusfervid.telemetry.databinding.FragmentEditarVehiculoBinding
 
 /**
@@ -35,7 +34,7 @@ class EditarVehiculoFragment : Fragment() {
 
     binding.buttonSecond.setOnClickListener {
       Snackbar.make(it, "Averiado, disculpa las molestias", Snackbar.LENGTH_SHORT)
-        .setAnchorView(R.id.fab)
+//        .setAnchorView(R.id.fab)
         .show()
     }
   }

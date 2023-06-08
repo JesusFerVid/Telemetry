@@ -49,7 +49,7 @@ class VehiculosFragment : Fragment() {
 
     // Usamos un observer para actualizar la lista cuando haya cambios
     viewModel.vehiculosLD.observe(viewLifecycleOwner, Observer<List<Vehiculo>> { vehiculos ->
-      vehiculosAdapter.setVehiculos(vehiculos)
+      vehiculosAdapter.setListaVehiculos(vehiculos)
     })
   }
 
