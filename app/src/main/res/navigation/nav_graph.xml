@@ -12,12 +12,12 @@
     tools:layout="@layout/fragment_vehiculos">
 
     <action
-      android:id="@+id/actionEditar"
-      app:destination="@id/EditarFragment"/>
+      android:id="@+id/actionEditarVehiculo"
+      app:destination="@id/EditarVehiculoFragment"/>
   </fragment>
   <fragment
-    android:id="@+id/EditarFragment"
-    android:name="com.jesusfervid.telemetry.view.EditarFragment"
-    android:label="@string/editar_fragment_label"
-    tools:layout="@layout/fragment_editar" />
+    android:id="@+id/EditarVehiculoFragment"
+    android:name="com.jesusfervid.telemetry.view.EditarVehiculoFragment"
+    android:label="@string/editar_vehiculo_fragment_label"
+    tools:layout="@layout/fragment_editar_vehiculo" />
 </navigation>

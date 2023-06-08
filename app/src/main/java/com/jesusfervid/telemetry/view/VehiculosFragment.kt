@@ -34,7 +34,7 @@ class VehiculosFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.buttonFirst.setOnClickListener {
-      findNavController().navigate(R.id.actionEditar)
+      findNavController().navigate(R.id.actionEditarVehiculo)
     }
   }
 
