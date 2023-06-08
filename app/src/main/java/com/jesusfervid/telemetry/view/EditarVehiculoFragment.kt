@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
+import com.jesusfervid.telemetry.R
 import com.jesusfervid.telemetry.databinding.FragmentEditarVehiculoBinding
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * En este [Fragment] podremos editar y guardar un vehiculo nuevo o existente.
  */
 class EditarVehiculoFragment : Fragment() {
 
@@ -32,15 +34,36 @@ class EditarVehiculoFragment : Fragment() {
   override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    binding.buttonSecond.setOnClickListener {
-      Snackbar.make(it, "Averiado, disculpa las molestias", Snackbar.LENGTH_SHORT)
-//        .setAnchorView(R.id.fab)
-        .show()
+    initializeSpTipoVehiculo()
+
+    binding.btGuardar.setOnClickListener {
+      // TODO: Guardar
     }
   }
 
   override fun onDestroyView() {
     super.onDestroyView()
     _binding = null
+  }
+
+  /**
+   * Crea y asigna el adapter al spinner
+   * Asigna también los listeners
+   */
+  fun initializeSpTipoVehiculo() {
+    ArrayAdapter.createFromResource(
+      requireContext(),
+      R.array.tipos_vehiculo,
+      android.R.layout.simple_spinner_item
+    ).also {
+      it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+      binding.spTipoVehiculo.adapter = it
+    }
+
+    binding.spTipoVehiculo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+      override fun onItemSelected(parent : AdapterView<*>?, view : View, position : Int, id : Long) {}
+
+      override fun onNothingSelected(parent : AdapterView<*>?) {}
+    }
   }
 }

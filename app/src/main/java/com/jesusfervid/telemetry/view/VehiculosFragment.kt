@@ -66,12 +66,11 @@ class VehiculosFragment : Fragment() {
       layoutManager = LinearLayoutManager(activity)
       adapter = vehiculosAdapter
     }
-
   }
 
   /** Establece Listeners para operaciones de añadir, editar y borrar */
   private fun initializeCRUD() {
-    binding.fabNuevo.setOnClickListener {
+    binding.fabNuevoVehiculo.setOnClickListener {
       // Pasamos un null si queremos crear un nuevo item
       val action = VehiculosFragmentDirections.actionEditarVehiculo()
       findNavController().navigate(action)

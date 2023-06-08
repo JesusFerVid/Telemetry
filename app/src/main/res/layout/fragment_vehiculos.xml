@@ -14,18 +14,18 @@
     android:layout_marginTop="@dimen/padding_default"
     android:layout_marginEnd="@dimen/padding_default"
     android:layout_marginBottom="@dimen/padding_default"
-    app:layout_constraintBottom_toTopOf="@+id/fabNuevo"
+    app:layout_constraintBottom_toTopOf="@+id/fabNuevoVehiculo"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     tools:listitem="@layout/item_vehiculo"/>
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/fabNuevo"
+    android:id="@+id/fabNuevoVehiculo"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/fab_margin"
-    android:layout_marginBottom="@dimen/fab_margin"
+    android:layout_marginBottom="@dimen/margin_l"
     android:clickable="true"
     android:src="@android:drawable/ic_input_add"
     app:layout_constraintBottom_toBottomOf="parent"
