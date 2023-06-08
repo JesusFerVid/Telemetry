@@ -64,10 +64,10 @@ class VehiculosAdapter() : RecyclerView.Adapter<VehiculosAdapter.VehiculosViewHo
   /** Interfaz que define los listeners para la Vehiculo */
   interface OnVehiculoClickListener{
     /** Edita el item  que contiene el ViewHolder */
-    fun onVehiculoClick(lista:Vehiculo?)
+    fun onVehiculoClick(vehiculo : Vehiculo?)
 
     /** Borra el item que contiene el ViewHolder */
-    fun onVehiculoBorrarClick(lista:Vehiculo?)
+    fun onVehiculoBorrarClick(vehiculo : Vehiculo?)
   }
 
   /**

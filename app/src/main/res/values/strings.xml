@@ -1,11 +1,14 @@
 <resources>
   <string name="app_name">Telemetry</string>
   <string name="action_settings">Settings</string>
-  <!-- Strings used for fragments for navigation -->
+
   <string name="vehiculos_fragment_label">Lista de Vehículos</string>
   <string name="editar_vehiculo_fragment_label">Añadir vehículo</string>
   <string name="next">Next</string>
   <string name="previous">Previous</string>
+
+  <string name="confirmacion_borrar">¿Seguro que quieres borrar este elemento?</string>
+
   <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -95,4 +98,5 @@
     <item>@string/esc</item>
     <item>@string/c_dis</item>
   </string-array>
+
 </resources>

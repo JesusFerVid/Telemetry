@@ -1,16 +1,24 @@
 package com.jesusfervid.telemetry.view
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jesusfervid.telemetry.R
+import com.jesusfervid.telemetry.adapter.VehiculosAdapter
 import com.jesusfervid.telemetry.databinding.FragmentVehiculosBinding
+import com.jesusfervid.telemetry.model.Vehiculo
+import com.jesusfervid.telemetry.viewmodel.VehiculosViewModel
 
 /**
- * En este Fragment se muestra la lista de vehículos del usuario.
+ * En este [Fragment] se muestra la lista de vehículos del usuario.
  */
 class VehiculosFragment : Fragment() {
 
@@ -19,6 +27,9 @@ class VehiculosFragment : Fragment() {
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
+
+  private val viewModel : VehiculosViewModel by activityViewModels()
+  lateinit var vehiculosAdapter : VehiculosAdapter
 
   override fun onCreateView(
     inflater : LayoutInflater, container : ViewGroup?,
@@ -33,13 +44,71 @@ class VehiculosFragment : Fragment() {
   override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    binding.buttonFirst.setOnClickListener {
-      findNavController().navigate(R.id.actionEditarVehiculo)
-    }
+    initializeRecyclerView()
+    initializeCRUD()
+
+    // Usamos un observer para actualizar la lista cuando haya cambios
+    viewModel.vehiculosLD.observe(viewLifecycleOwner, Observer<List<Vehiculo>> { vehiculos ->
+      vehiculosAdapter.setVehiculos(vehiculos)
+    })
   }
 
   override fun onDestroyView() {
     super.onDestroyView()
     _binding = null
+  }
+
+  /** Asigna el layoutManager y el adapter al RecyclerView */
+  private fun initializeRecyclerView() {
+    vehiculosAdapter = VehiculosAdapter()
+
+    with(binding.rvVehiculos) {
+      layoutManager = LinearLayoutManager(activity)
+      adapter = vehiculosAdapter
+    }
+
+  }
+
+  /** Establece Listeners para operaciones de añadir, editar y borrar */
+  private fun initializeCRUD() {
+    binding.fabNuevo.setOnClickListener {
+      // Pasamos un null si queremos crear un nuevo item
+      val action = VehiculosFragmentDirections.actionEditarVehiculo()
+      findNavController().navigate(action)
+    }
+
+    // Implementamos la interfaz declarada en el ViewModel aquí
+    vehiculosAdapter.onVehiculoClickListener = object : VehiculosAdapter.OnVehiculoClickListener {
+      // Editar item
+      override fun onVehiculoClick(vehiculo: Vehiculo?) {
+        val action = VehiculosFragmentDirections.actionEditarVehiculo()
+        findNavController().navigate(action)
+      }
+
+      // Borrar item
+      override fun onVehiculoBorrarClick(vehiculo: Vehiculo?) {
+        borrarVehiculo(vehiculo!!)
+      }
+    }
+  }
+
+  /** Se invoca al tocar el icono de borrar */
+  private fun borrarVehiculo(vehiculo : Vehiculo){
+    AlertDialog.Builder(activity as Context)
+      .setTitle(android.R.string.dialog_alert_title)
+      .setMessage(getString(R.string.confirmacion_borrar))
+
+      // Acción si pulsa Sí
+      .setPositiveButton(android.R.string.ok){ v, _ ->
+        // Borramos la tarea y cerramos el diálogo
+        viewModel.removeVehiculo(vehiculo)
+        v.dismiss()
+      }
+
+      // Accion si pulsa No
+      .setNegativeButton(android.R.string.cancel){ v,_ -> v.dismiss() }
+      .setCancelable(false)
+      .create()
+      .show()
   }
 }
