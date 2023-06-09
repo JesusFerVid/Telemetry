@@ -80,8 +80,14 @@ class VehiculosFragment : Fragment() {
 
     // Implementamos la interfaz declarada en el Adapter aquí
     vehiculosAdapter.onVehiculoClickListener = object : VehiculosAdapter.OnVehiculoClickListener {
+      // Ir al detalle
+      override fun onVehiculoClick(vehiculo : Vehiculo?) {
+        val action = VehiculosFragmentDirections.actionRevisionesVehiculo(vehiculo!!)
+        findNavController().navigate(action)
+      }
+
       // Editar item
-      override fun onVehiculoClick(vehiculo: Vehiculo?) {
+      override fun onVehiculoEditarClick(vehiculo: Vehiculo?) {
         val action = VehiculosFragmentDirections.actionEditarVehiculo(vehiculo)
         findNavController().navigate(action)
       }
@@ -89,7 +95,6 @@ class VehiculosFragment : Fragment() {
       // Borrar item
       override fun onVehiculoBorrarClick(vehiculo: Vehiculo?) {
         borrarVehiculo(vehiculo!!)
-//        viewModel.getVehiculos()
       }
     }
   }

@@ -34,7 +34,9 @@
   </string-array>
 
   <!-- Editar Revisión -->
-
+  <string name="titulo_revision">Revisión del %s</string>
+  <string name="km_label">Km:</string>
+  <string name="km_siguiente_label">Siguiente:</string>
 
   <!-- Todos los tipos de líneas de revisión -->
   <string name="cam_neu">Cambio de neumáticos</string>
@@ -73,5 +75,7 @@
     <item>@string/esc</item>
     <item>@string/c_dis</item>
   </string-array>
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

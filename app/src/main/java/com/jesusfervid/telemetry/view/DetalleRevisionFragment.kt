@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.jesusfervid.telemetry.databinding.FragmentDetalleRevisionBinding
 
 
@@ -17,6 +18,9 @@ class DetalleRevisionFragment : Fragment() {
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
+
+  // Argumentos
+  val args : DetalleRevisionFragmentArgs by navArgs()
 
   override fun onCreateView(
     inflater : LayoutInflater, container : ViewGroup?,
