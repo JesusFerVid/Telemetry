@@ -72,15 +72,15 @@ class VehiculosFragment : Fragment() {
   private fun initializeCRUD() {
     binding.fabNuevoVehiculo.setOnClickListener {
       // Pasamos un null si queremos crear un nuevo item
-      val action = VehiculosFragmentDirections.actionEditarVehiculo()
+      val action = VehiculosFragmentDirections.actionEditarVehiculo(null)
       findNavController().navigate(action)
     }
 
-    // Implementamos la interfaz declarada en el ViewModel aquí
+    // Implementamos la interfaz declarada en el Adapter aquí
     vehiculosAdapter.onVehiculoClickListener = object : VehiculosAdapter.OnVehiculoClickListener {
       // Editar item
       override fun onVehiculoClick(vehiculo: Vehiculo?) {
-        val action = VehiculosFragmentDirections.actionEditarVehiculo()
+        val action = VehiculosFragmentDirections.actionEditarVehiculo(vehiculo)
         findNavController().navigate(action)
       }
 

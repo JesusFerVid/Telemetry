@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel para "VehiculosFragment"
+ * ViewModel para VehiculosFragment y EditarVehiculoFragment
  */
 class VehiculosViewModel(app : Application) : AndroidViewModel(app) {
   val vehiculosLD = MutableLiveData<List<Vehiculo>>()

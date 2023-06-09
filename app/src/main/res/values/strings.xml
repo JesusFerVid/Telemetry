@@ -3,8 +3,12 @@
   <string name="action_settings">Settings</string>
 
   <string name="vehiculos_fragment_label">Lista de Vehículos</string>
-  <string name="editar_vehiculo_fragment_label">Añadir vehículo</string>
+  <string name="nuevo_vehiculo_fragment_label">Nuevo vehículo</string>
+  <string name="editar_vehiculo_fragment_label">Editar vehículo</string>
+  <string name="nueva_revision_fragment_label">Nueva revisión</string>
+  <string name="editar_revision_fragment_label">Editar revisión</string>
 
+  <string name="falta_nombre_vehiculo">Por favor, introduzca un nombre para el vehículo</string>
   <string name="guardar">Guardar</string>
   <string name="confirmacion_borrar">¿Seguro que quieres borrar este elemento?</string>
 

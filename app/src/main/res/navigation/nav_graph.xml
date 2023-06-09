@@ -18,6 +18,11 @@
   <fragment
     android:id="@+id/EditarVehiculoFragment"
     android:name="com.jesusfervid.telemetry.view.EditarVehiculoFragment"
-    android:label="@string/editar_vehiculo_fragment_label"
-    tools:layout="@layout/fragment_editar_vehiculo" />
+    android:label="@string/nuevo_vehiculo_fragment_label"
+    tools:layout="@layout/fragment_editar_vehiculo" >
+    <argument
+      android:name="vehiculo"
+      app:argType="com.jesusfervid.telemetry.model.Vehiculo"
+      app:nullable="true"/>
+  </fragment>
 </navigation>

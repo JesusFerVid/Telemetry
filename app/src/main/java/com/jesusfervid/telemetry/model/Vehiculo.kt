@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Vehiculo(
  val tipo : String,
- val nombre : String = tipo,
+ val nombre : String,
  val modelo : String? = null,
  val anyo : Int? = null,
   @PrimaryKey(autoGenerate = true) val id : Long? = null,

@@ -3,6 +3,7 @@ package com.jesusfervid.telemetry.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.jesusfervid.telemetry.R
 import com.jesusfervid.telemetry.databinding.ItemVehiculoBinding
 import com.jesusfervid.telemetry.model.Vehiculo
 
@@ -50,9 +51,23 @@ class VehiculosAdapter() : RecyclerView.Adapter<VehiculosAdapter.VehiculosViewHo
   override fun onBindViewHolder(holder: VehiculosViewHolder, position: Int) {
     // Nos pasan la posición del  item a mostrar en el viewHolder
     with(holder) {
+      // Obtenemos el contexto para acceder a los recursos de strings.xml
+      val context = this.itemView.context
       // Recuperamos el item a mostrar y rellenamos los campos del ViewHolder
       with(vehiculos!![position]) {
-        binding.tvNombreVehiculo.text = nombre
+        // Establecemos el icono según el tipo
+        binding.ivTipoVehiculo.setImageResource(
+          when (this.tipo) {
+            context.getString(R.string.coche) -> R.drawable.coche
+            context.getString(R.string.moto) -> R.drawable.motocicleta
+            context.getString(R.string.ciclomotor) -> R.drawable.ciclomotor
+            context.getString(R.string.furgoneta) -> R.drawable.furgoneta
+            context.getString(R.string.camion) -> R.drawable.camion
+            else -> R.drawable.coche
+          }
+        )
+
+        binding.tvNombreVehiculo.text = this.nombre
         binding.tvDescripcionVehiculo.text = formarDescripcion(this)
       }
     }
