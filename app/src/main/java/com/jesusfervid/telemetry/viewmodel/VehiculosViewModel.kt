@@ -17,7 +17,6 @@ class VehiculosViewModel(app : Application) : AndroidViewModel(app) {
 
   init {
   	VehiculoRepository(getApplication<Application>().applicationContext)
-    getVehiculos()
   }
 
   // Estas funciones llaman al método homónimo del repositorio y actualizan el LiveData.
@@ -36,6 +35,9 @@ class VehiculosViewModel(app : Application) : AndroidViewModel(app) {
 
   fun removeVehiculo(vehiculo : Vehiculo) = viewModelScope.launch(Dispatchers.IO) {
     VehiculoRepository.remove(vehiculo)
+    val nuevaLista = vehiculosLD.value?.toMutableList()
+    nuevaLista?.remove(vehiculo)
+    vehiculosLD.postValue(nuevaLista!!)
   }
 
   fun getVehiculos() = viewModelScope.launch(Dispatchers.IO) {

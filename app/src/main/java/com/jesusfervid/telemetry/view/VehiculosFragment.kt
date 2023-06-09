@@ -47,6 +47,8 @@ class VehiculosFragment : Fragment() {
     initializeRecyclerView()
     initializeCRUD()
 
+    viewModel.getVehiculos()
+
     // Usamos un observer para actualizar la lista cuando haya cambios
     viewModel.vehiculosLD.observe(viewLifecycleOwner, Observer<List<Vehiculo>> { vehiculos ->
       vehiculosAdapter.setListaVehiculos(vehiculos)
@@ -87,6 +89,7 @@ class VehiculosFragment : Fragment() {
       // Borrar item
       override fun onVehiculoBorrarClick(vehiculo: Vehiculo?) {
         borrarVehiculo(vehiculo!!)
+//        viewModel.getVehiculos()
       }
     }
   }

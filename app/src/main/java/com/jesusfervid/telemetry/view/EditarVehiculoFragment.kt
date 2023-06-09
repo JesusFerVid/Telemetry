@@ -1,7 +1,6 @@
 package com.jesusfervid.telemetry.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -100,12 +99,17 @@ class EditarVehiculoFragment : Fragment() {
 
   /** Rellena los campos con los datos del item pasado al Fragment */
   private fun cargarVehiculo() {
+    // Recuperar datos
     val vehiculo : Vehiculo = args.vehiculo!!
     val spinner = binding.spTipoVehiculo
     spinner.setSelection(spinnerIndexOf(spinner, vehiculo.tipo))
     binding.tietNombreVehiculo.setText(vehiculo.nombre)
     binding.tietModeloVehiculo.setText(vehiculo.modelo)
-    binding.tietAnyoVehiculo.setText(vehiculo.anyo.toString())
+
+    if (vehiculo.anyo != null)
+      binding.tietAnyoVehiculo.setText(vehiculo.anyo.toString())
+    else
+      binding.tietAnyoVehiculo.setText("")
   }
 
   /** Guarda el item nuevo o editado */
@@ -158,7 +162,6 @@ class EditarVehiculoFragment : Fragment() {
   private fun spinnerIndexOf(spinner : Spinner, buscado : String) : Int {
     val adapter : ArrayAdapter<String> = spinner.adapter as ArrayAdapter<String>
     for (indice in (0..adapter.count)) {
-      Log.d("ADAPTER.COUNT", spinner.adapter.count.toString())
       if (adapter.getItem(indice) == buscado)
         return indice
     }
