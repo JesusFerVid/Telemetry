@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".view.RevisionesFragment">
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="@string/hello_blank_fragment"/>
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rvRevisiones"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_marginStart="@dimen/padding_default"
+    android:layout_marginTop="@dimen/padding_default"
+    android:layout_marginEnd="@dimen/padding_default"
+    android:layout_marginBottom="@dimen/padding_default"
+    app:layout_constraintBottom_toTopOf="@+id/fabNuevaRevision"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:listitem="@layout/item_revision"/>
 
-</FrameLayout>
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/fabNuevaRevision"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/fab_margin"
+    android:layout_marginBottom="@dimen/margin_l"
+    android:clickable="true"
+    android:src="@android:drawable/ic_input_add"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,16 +19,22 @@ class VehiculosAdapter() : RecyclerView.Adapter<VehiculosAdapter.VehiculosViewHo
   inner class VehiculosViewHolder(val binding: ItemVehiculoBinding)
     : RecyclerView.ViewHolder(binding.root) {
     init {
-      // Click sobre el botón borrar
-      binding.ivBorrarVehiculo.setOnClickListener {
-        val vehiculo = vehiculos?.get(this.bindingAdapterPosition)
-        onVehiculoClickListener?.onVehiculoBorrarClick(vehiculo)
-      }
-
       // Click sobre el item (ConstraintLayout)
       binding.root.setOnClickListener {
         val vehiculo = vehiculos?.get(this.bindingAdapterPosition)
         onVehiculoClickListener?.onVehiculoClick(vehiculo)
+      }
+
+      // Click sobre el botón editar
+      binding.ivEditarVehiculo.setOnClickListener {
+        val vehiculo = vehiculos?.get(this.bindingAdapterPosition)
+        onVehiculoClickListener?.onVehiculoEditarClick(vehiculo)
+      }
+
+      // Click sobre el botón borrar
+      binding.ivBorrarVehiculo.setOnClickListener {
+        val vehiculo = vehiculos?.get(this.bindingAdapterPosition)
+        onVehiculoClickListener?.onVehiculoBorrarClick(vehiculo)
       }
     }
   }
@@ -78,8 +84,11 @@ class VehiculosAdapter() : RecyclerView.Adapter<VehiculosAdapter.VehiculosViewHo
 
   /** Interfaz que define los listeners para la Vehiculo */
   interface OnVehiculoClickListener{
-    /** Edita el item  que contiene el ViewHolder */
+    /** Navega al detalle del item */
     fun onVehiculoClick(vehiculo : Vehiculo?)
+
+    /** Edita el item  que contiene el ViewHolder */
+    fun onVehiculoEditarClick(vehiculo : Vehiculo?)
 
     /** Borra el item que contiene el ViewHolder */
     fun onVehiculoBorrarClick(vehiculo : Vehiculo?)

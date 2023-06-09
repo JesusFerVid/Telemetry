@@ -31,7 +31,7 @@
   <fragment
     android:id="@+id/RevisionesFragment"
     android:name="com.jesusfervid.telemetry.view.RevisionesFragment"
-    android:label="fragment_revisiones"
+    android:label="@string/revisiones_fragment_label"
     tools:layout="@layout/fragment_revisiones">
     <argument
       android:name="vehiculo"
@@ -46,7 +46,7 @@
   <fragment
     android:id="@+id/DetalleRevisionFragment"
     android:name="com.jesusfervid.telemetry.view.DetalleRevisionFragment"
-    android:label="fragment_detalle_revision"
+    android:label="@string/detalle_revision_fragment_label"
     tools:layout="@layout/fragment_detalle_revision">
     <argument
       android:name="revision"
@@ -58,7 +58,7 @@
   <fragment
     android:id="@+id/EditarRevisionFragment"
     android:name="com.jesusfervid.telemetry.view.EditarRevisionFragment"
-    android:label="fragment_editar_revision"
+    android:label="@string/nueva_revision_fragment_label"
     tools:layout="@layout/fragment_editar_revision">
     <argument
       android:name="revision"

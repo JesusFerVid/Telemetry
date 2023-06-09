@@ -5,6 +5,8 @@
   <string name="vehiculos_fragment_label">Lista de Vehículos</string>
   <string name="nuevo_vehiculo_fragment_label">Nuevo vehículo</string>
   <string name="editar_vehiculo_fragment_label">Editar vehículo</string>
+  <string name="revisiones_fragment_label">Lista de revisiones</string>
+  <string name="detalle_revision_fragment_label">Ver revisión</string>
   <string name="nueva_revision_fragment_label">Nueva revisión</string>
   <string name="editar_revision_fragment_label">Editar revisión</string>
 
