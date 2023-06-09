@@ -8,7 +8,7 @@ import com.jesusfervid.telemetry.databinding.ItemVehiculoBinding
 import com.jesusfervid.telemetry.model.Vehiculo
 
 /**
- * Adapter para la lista de vehiculos.
+ * Adapter para la lista de vehículos.
  * Los Adapter hacen de puente entre los datos y la interfaz de una RecyclerView.
  */
 class VehiculosAdapter() : RecyclerView.Adapter<VehiculosAdapter.VehiculosViewHolder>() {
