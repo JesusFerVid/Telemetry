@@ -80,6 +80,12 @@ class EditarVehiculoFragment : Fragment() {
     }
   }
 
+  private fun initializeBotones() {
+    binding.btGuardarVehiculo.setOnClickListener {
+      guardarVehiculo()
+    }
+  }
+
   /** Comprueba si debemos añadir o editar */
   private fun comprobarNuevoItem() {
     (requireActivity() as AppCompatActivity).supportActionBar?.title =
@@ -89,12 +95,6 @@ class EditarVehiculoFragment : Fragment() {
       }
     if (!esNuevoItem)
       cargarVehiculo()
-  }
-
-  private fun initializeBotones() {
-    binding.btGuardar.setOnClickListener {
-      guardarVehiculo()
-    }
   }
 
   /** Rellena los campos con los datos del item pasado al Fragment */

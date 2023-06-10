@@ -12,6 +12,7 @@
 
   <string name="falta_nombre_vehiculo">Por favor, introduzca un nombre para el vehículo</string>
   <string name="guardar">Guardar</string>
+  <string name="editar">Editar</string>
   <string name="confirmacion_borrar">¿Seguro que quieres borrar este elemento?</string>
 
   <!-- Editar vehículo -->
@@ -35,10 +36,24 @@
     <item>@string/camion</item>
   </string-array>
 
-  <!-- Editar Revisión -->
+  <!-- Lista de Revisiones -->
   <string name="titulo_revision">Revisión del %s</string>
   <string name="km_label">Km:</string>
   <string name="km_siguiente_label">Siguiente:</string>
+  <string name="km_no_indicados">No indicado</string>
+
+  <!-- Editar Revisión -->
+  <string name="editar_revision_titulo">Información de la revisión</string>
+  <string name="fecha_revision">Fecha de la revisión</string>
+  <string name="km_revision">Kilometraje en la revisión</string>
+  <string name="km_siguiente_revision">Kilometraje para la próxima revisión</string>
+  <string name="observaciones_revision">Observaciones</string>
+
+  <!-- Editar Línea Revisión -->
+  <string name="lineas_revision_titulo">Acciones realizadas</string>
+  <string name="lineas_revision_ayuda">Pulse un elemento para editarlo</string>
+  <string name="LineaRevision_realizada">Realizada</string>
+  <string name="LineaRevision_no_realizada">No realizada</string>
 
   <!-- Todos los tipos de líneas de revisión -->
   <string name="cam_neu">Cambio de neumáticos</string>
@@ -58,8 +73,8 @@
   <string name="esc">Cambio de escobillas</string>
   <string name="c_dis">Cambio de correa de distribución</string>
 
-  <!-- Líneas de revisión de coche -->
-  <string-array name="lr_coche">
+  <!-- Líneas de revisión genéricas -->
+  <string-array name="lr_genericas">
     <item>@string/cam_neu</item>
     <item>@string/cru_neu</item>
     <item>@string/ace</item>
@@ -77,6 +92,7 @@
     <item>@string/esc</item>
     <item>@string/c_dis</item>
   </string-array>
+
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
 

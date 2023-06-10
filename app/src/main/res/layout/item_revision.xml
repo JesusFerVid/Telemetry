@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  style="@style/Widget.MaterialComponents.CardView"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  app:cardCornerRadius="@dimen/corner_radius_default"
-  app:cardElevation="@dimen/card_elevation"
   app:cardUseCompatPadding="true">
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/clyItemRevision"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_default">
 
     <ImageView
       android:id="@+id/ivRevision"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="@dimen/padding_default"
-      android:layout_marginTop="@dimen/padding_default"
-      android:layout_marginBottom="@dimen/padding_default"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +28,6 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="@dimen/margin_s"
-      android:layout_marginTop="@dimen/padding_default"
       android:ellipsize="end"
       android:gravity="center_vertical"
       android:textStyle="bold"
@@ -44,12 +41,11 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/margin_s"
-      android:layout_marginBottom="@dimen/padding_default"
+      android:text="@string/km_label"
       android:textColor="@color/grey"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="@+id/tvTituloRevision"
-      app:layout_constraintTop_toBottomOf="@+id/tvTituloRevision"
-      android:text="@string/km_label"/>
+      app:layout_constraintTop_toBottomOf="@+id/tvTituloRevision"/>
 
     <TextView
       android:id="@+id/tvKmRevision"
@@ -66,10 +62,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="@dimen/margin_s"
+      android:text="@string/km_siguiente_label"
       android:textColor="@color/grey"
       app:layout_constraintStart_toStartOf="@+id/glItemRevision"
-      app:layout_constraintTop_toTopOf="@+id/tvKmRevisionLabel"
-      android:text="@string/km_siguiente_label"/>
+      app:layout_constraintTop_toTopOf="@+id/tvKmRevisionLabel"/>
 
     <TextView
       android:id="@+id/tvKmSiguienteRevision"
@@ -82,24 +78,9 @@
       tools:text="10000"/>
 
     <ImageView
-      android:id="@+id/ivEditarRevision"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/padding_default"
-      android:layout_marginEnd="@dimen/margin_s"
-      android:layout_marginBottom="@dimen/padding_default"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/ivBorrarRevision"
-      app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/editar"/>
-
-    <ImageView
       android:id="@+id/ivBorrarRevision"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/padding_default"
-      android:layout_marginEnd="@dimen/padding_default"
-      android:layout_marginBottom="@dimen/padding_default"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent"
@@ -113,5 +94,5 @@
       app:layout_constraintGuide_percent="0.4"/>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
 

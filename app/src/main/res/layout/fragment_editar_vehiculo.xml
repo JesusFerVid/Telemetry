@@ -36,7 +36,8 @@
         android:id="@+id/tietNombreVehiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nombre"/>
+        android:hint="@string/nombre"
+        android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,7 +56,8 @@
         android:id="@+id/tietModeloVehiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/modelo"/>
+        android:hint="@string/modelo"
+        android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +82,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-      android:id="@+id/btGuardar"
+      android:id="@+id/btGuardarVehiculo"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/margin_default"

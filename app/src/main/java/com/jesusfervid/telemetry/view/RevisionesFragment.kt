@@ -83,14 +83,8 @@ class RevisionesFragment : Fragment() {
 
     // Implementamos la interfaz declarada en el Adapter aquí
     revisionesAdapter.onRevisionClickListener = object : RevisionesAdapter.OnRevisionClickListener {
-      // Ir al detalle
-      override fun onRevisionClick(revision : Revision?) {
-        val action = RevisionesFragmentDirections.actionDetalleRevision(revision!!)
-        findNavController().navigate(action)
-      }
-
       // Editar item
-      override fun onRevisionEditarClick(revision: Revision?) {
+      override fun onRevisionClick(revision : Revision?) {
         val action = RevisionesFragmentDirections.actionEditarRevision(revision)
         findNavController().navigate(action)
       }

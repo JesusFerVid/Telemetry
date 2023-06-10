@@ -9,4 +9,8 @@
   <color name="black">#FF000000</color>
   <color name="white">#FFFFFFFF</color>
   <color name="grey">#808080</color>
+
+  <!-- Lineas de revisión -->
+  <color name="realizada">#13A10E</color>
+  <color name="no_realizada">#C50F1F</color>
 </resources>

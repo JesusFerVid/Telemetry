@@ -25,12 +25,6 @@ class RevisionesAdapter() : RecyclerView.Adapter<RevisionesAdapter.RevisionesVie
         onRevisionClickListener?.onRevisionClick(revision)
       }
 
-      // Click sobre el botón editar
-      binding.ivEditarRevision.setOnClickListener {
-        val revision = revisiones?.get(this.bindingAdapterPosition)
-        onRevisionClickListener?.onRevisionEditarClick(revision)
-      }
-
       // Click sobre el botón borrar
       binding.ivBorrarRevision.setOnClickListener {
         val revision = revisiones?.get(this.bindingAdapterPosition)
@@ -64,6 +58,7 @@ class RevisionesAdapter() : RecyclerView.Adapter<RevisionesAdapter.RevisionesVie
         val fecha = this.fecha
         binding.tvTituloRevision.text = context.getString(R.string.titulo_revision, fecha)
         binding.tvKmRevision.text = this.km.toString()
+
         binding.tvKmSiguienteRevision.text = this.kmSiguiente.toString()
       }
     }
@@ -74,11 +69,8 @@ class RevisionesAdapter() : RecyclerView.Adapter<RevisionesAdapter.RevisionesVie
 
   /** Interfaz que define los listeners para la Revision */
   interface OnRevisionClickListener{
-    /** Navega al detalle del item */
-    fun onRevisionClick(revision : Revision?)
-
     /** Edita el item  que contiene el ViewHolder */
-    fun onRevisionEditarClick(revision : Revision?)
+    fun onRevisionClick(revision : Revision?)
 
     /** Borra el item que contiene el ViewHolder */
     fun onRevisionBorrarClick(revision : Revision?)

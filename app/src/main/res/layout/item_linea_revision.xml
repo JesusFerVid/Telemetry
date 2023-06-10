@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  style="@style/Widget.MaterialComponents.CardView"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  app:cardUseCompatPadding="true">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/clyItemLineaRevision"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_default">
+
+    <TextView
+      android:id="@+id/tvTipoLineaRevision"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:gravity="center_vertical"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="Tipo de revisión"/>
+
+    <ImageView
+      android:id="@+id/ivRealizadaLineaRevision"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_s"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/tvTipoLineaRevision"
+      app:layout_constraintTop_toBottomOf="@+id/tvTipoLineaRevision"
+      app:srcCompat="@drawable/no_realizada"/>
+
+    <TextView
+      android:id="@+id/tvRealizadaLineaRevision"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/margin_xs"
+      android:textColor="@color/grey"
+      app:layout_constraintBottom_toBottomOf="@+id/ivRealizadaLineaRevision"
+      app:layout_constraintStart_toEndOf="@+id/ivRealizadaLineaRevision"
+      app:layout_constraintTop_toTopOf="@+id/ivRealizadaLineaRevision"
+      android:text="@string/LineaRevision_no_realizada"/>
+
+    <TextView
+      android:id="@+id/tvSiguienteLineaRevision"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/margin_s"
+      android:text="@string/km_siguiente_label"
+      android:textColor="@color/grey"
+      app:layout_constraintStart_toStartOf="@+id/glItemLineaRevision"
+      app:layout_constraintTop_toTopOf="@+id/ivRealizadaLineaRevision"/>
+
+    <TextView
+      android:id="@+id/tvKmSiguienteLineaRevision"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/margin_xs"
+      android:textColor="@color/grey"
+      app:layout_constraintStart_toEndOf="@+id/tvSiguienteLineaRevision"
+      app:layout_constraintTop_toTopOf="@+id/tvSiguienteLineaRevision"
+      tools:text="10000"/>
+
+    <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/glItemLineaRevision"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.36"/>
+
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

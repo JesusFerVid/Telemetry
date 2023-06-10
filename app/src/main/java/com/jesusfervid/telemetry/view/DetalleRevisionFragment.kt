@@ -12,6 +12,7 @@ import com.jesusfervid.telemetry.databinding.FragmentDetalleRevisionBinding
 /**
  * En este [Fragment] podremos ver todos los datos de una revisión.
  */
+// TODO: Seguramente, borrar esta clase
 class DetalleRevisionFragment : Fragment() {
   private var _binding : FragmentDetalleRevisionBinding? = null
 
