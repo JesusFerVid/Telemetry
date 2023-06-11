@@ -99,17 +99,18 @@ class EditarVehiculoFragment : Fragment() {
 
   /** Rellena los campos con los datos del item pasado al Fragment */
   private fun cargarVehiculo() {
-    // Recuperar datos
     val vehiculo : Vehiculo = args.vehiculo!!
     val spinner = binding.spTipoVehiculo
     spinner.setSelection(spinnerIndexOf(spinner, vehiculo.tipo))
     binding.tietNombreVehiculo.setText(vehiculo.nombre)
     binding.tietModeloVehiculo.setText(vehiculo.modelo)
 
-    if (vehiculo.anyo != null)
-      binding.tietAnyoVehiculo.setText(vehiculo.anyo.toString())
-    else
-      binding.tietAnyoVehiculo.setText("")
+    binding.tietAnyoVehiculo.setText(
+      when (vehiculo.anyo) {
+        null -> ""
+        else -> vehiculo.anyo.toString()
+      }
+    )
   }
 
   /** Guarda el item nuevo o editado */
@@ -124,7 +125,7 @@ class EditarVehiculoFragment : Fragment() {
     if (nombre.isBlank()) {
       Toast.makeText(
         requireContext(),
-        getString(R.string.falta_nombre_vehiculo),
+        getString(R.string.faltan_campos_obligatorios),
         Toast.LENGTH_LONG
       ).show()
       return

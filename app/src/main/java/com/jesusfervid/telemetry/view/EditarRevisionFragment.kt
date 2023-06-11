@@ -1,24 +1,22 @@
 package com.jesusfervid.telemetry.view
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jesusfervid.telemetry.R
+import com.jesusfervid.telemetry.adapter.LineasRevisionAdapter
 import com.jesusfervid.telemetry.databinding.FragmentEditarRevisionBinding
+import com.jesusfervid.telemetry.model.LineaRevision
 import com.jesusfervid.telemetry.model.Revision
-import com.jesusfervid.telemetry.viewmodel.LineaRevisionViewModel
+import com.jesusfervid.telemetry.viewmodel.EditarRevisionDialogFragment
+import com.jesusfervid.telemetry.viewmodel.LineasRevisionViewModel
 import com.jesusfervid.telemetry.viewmodel.RevisionesViewModel
-import java.util.Calendar
 
 
 /**
@@ -35,13 +33,17 @@ class EditarRevisionFragment : Fragment() {
   val args : EditarRevisionFragmentArgs by navArgs()
   val esNuevoItem : Boolean by lazy { args.revision == null }
 
-  private val viewModel : RevisionesViewModel by activityViewModels()
-  private val lineasViewModel : LineaRevisionViewModel by activityViewModels()
+  private val revisionViewModel : RevisionesViewModel by activityViewModels()
+  private val lineasViewModel : LineasRevisionViewModel by activityViewModels()
 
-  private val calendario : Calendar = Calendar.getInstance()
+  lateinit var lineasAdapter : LineasRevisionAdapter
+
+  // Una copia de la revisión que estamos editando, para pasarla entre métodos y diálogos
+  private lateinit var revisionEditando : Revision
 
   override fun onCreateView(
-    inflater : LayoutInflater, container : ViewGroup?,
+    inflater : LayoutInflater,
+    container : ViewGroup?,
     savedInstanceState : Bundle?
   ) : View? {
 
@@ -53,7 +55,7 @@ class EditarRevisionFragment : Fragment() {
   override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    initializeCalendario()
+    initializeRecyclerView()
     initializeBotones()
     comprobarNuevoItem()
   }
@@ -63,30 +65,20 @@ class EditarRevisionFragment : Fragment() {
     _binding = null
   }
 
-  /** Crea un calendario para el cuadro de fecha */
-  private fun initializeCalendario() {
-    binding.tietFechaRevision.setOnClickListener {
-      val dia = calendario.get(Calendar.DAY_OF_MONTH)
-      val mes = calendario.get(Calendar.MONTH)
-      val anyo = calendario.get(Calendar.YEAR)
+  /** Asigna el layoutManager y el adapter al RecyclerView */
+  private fun initializeRecyclerView() {
+    lineasAdapter = LineasRevisionAdapter()
 
-      // Pasamos un contexto, un listener y el año, mes y día
-      // El listener tiene como parámetros: view (ignorada), año, mes y día
-      val dialogoFecha = DatePickerDialog(requireContext(), { _, a, m, d ->
-        // Usamos una cadena formateada
-        val fecha = "$d/${m + 1}/$a"
-        binding.tietFechaRevision.setText(fecha)
-      },
-        anyo, mes, dia
-      )
-      // Como con cualquier diálogo, no olvidemos el crucial paso final: mostrarlo
-      dialogoFecha.show()
+    with(binding.rvLineasRevision) {
+      layoutManager = LinearLayoutManager(activity)
+      adapter = lineasAdapter
     }
   }
 
   private fun initializeBotones() {
-    binding.btGuardarRevision.setOnClickListener {
-      guardarRevision()
+    binding.btEditarRevision.setOnClickListener {
+      EditarRevisionDialogFragment(revisionEditando)
+        .show(childFragmentManager, "editar_revision_dialog")
     }
   }
 
@@ -95,7 +87,8 @@ class EditarRevisionFragment : Fragment() {
     if (esNuevoItem){
       (requireActivity() as AppCompatActivity).supportActionBar?.title =
         getString(R.string.nueva_revision_fragment_label)
-      crearLineasRevision()
+      crearRevision()
+      // TODO: Invocar Dialog
     } else {
       (requireActivity() as AppCompatActivity).supportActionBar?.title =
         getString(R.string.editar_revision_fragment_label)
@@ -104,83 +97,53 @@ class EditarRevisionFragment : Fragment() {
 
   }
 
+  /** Crea (y persiste) una nueva revisión, para modificarla después **/
+  private fun crearRevision() {
+    revisionEditando  = Revision(args.vehiculo?.id!!, "", 0, 0, "")
+
+    binding.tvEditarRevisionFecha.text = ""
+    binding.tvEditarRevisionKm.text = ""
+    binding.tvEditarRevisionKmSiguiente.text = ""
+    binding.tvEditarRevisionObservaciones.text = ""
+
+    revisionViewModel.addRevision(revisionEditando)
+
+    crearLineasRevision()
+  }
+
+  /** Crea (y persiste) las líneas de esta revisión, para ser modificadas después. */
   private fun crearLineasRevision() {
-    TODO("Not yet implemented")
+    val tiposRevision : Array<String> = resources.getStringArray(R.array.lr_genericas)
+    for (tipo in tiposRevision) {
+      lineasViewModel.addLineaRevision(
+        LineaRevision(revisionEditando.id!!, tipo, false, null)
+      )
+    }
   }
 
   /** Rellena los campos con los datos del item pasado al Fragment */
   private fun cargarRevision() {
     // Recuperar datos
-    val vehiculo : Revision = args.vehiculo!!
-    val spinner = binding.spTipoRevision
-    spinner.setSelection(spinnerIndexOf(spinner, vehiculo.tipo))
-    binding.tietNombreRevision.setText(vehiculo.nombre)
-    binding.tietModeloRevision.setText(vehiculo.modelo)
+    revisionEditando = args.revision!!
+    binding.tvEditarRevisionFecha.text = revisionEditando.fecha
+    binding.tvEditarRevisionKm.text = revisionEditando.km.toString()
+    binding.tvEditarRevisionKmSiguiente.text = revisionEditando.kmSiguiente.toString()
 
-    if (vehiculo.anyo != null)
-      binding.tietAnyoRevision.setText(vehiculo.anyo.toString())
-    else
-      binding.tietAnyoRevision.setText("")
+    binding.tvEditarRevisionObservaciones.text =
+      when (revisionEditando.observaciones) {
+        null -> ""
+        else -> revisionEditando.observaciones
+      }
 
-    // TODO: Cargar líneas revisión
+    cargarLineasRevision()
+  }
+
+  private fun cargarLineasRevision() {
+    lineasViewModel.getLineasRevision(revisionEditando.id!!)
   }
 
   // TODO: Diálogo editar línea revisión
   // TODO: Guardar línea revisión
 
-  /** Guarda el item nuevo o editado */
-  private fun guardarRevision() {
-    // Recuperamos datos
-    val tipo  = binding.spTipoRevision.selectedItem.toString()
-    val nombre = binding.tietNombreRevision.text.toString()
-    var modelo : String?  = binding.tietModeloRevision.text.toString()
-    var anyo : String?  = binding.tietAnyoRevision.text.toString()
-
-    // Validación
-    if (nombre.isBlank()) {
-      Toast.makeText(
-        requireContext(),
-        getString(R.string.falta_nombre_vehiculo),
-        Toast.LENGTH_LONG
-      ).show()
-      return
-    }
-
-    // Adaptar datos
-    if (modelo.isNullOrBlank())
-      modelo = null
-
-    if (anyo.isNullOrBlank())
-      anyo = null
-
-    // Elegimos si añadir o modificar
-    if (esNuevoItem) {
-      viewModel.addRevision(
-        Revision(tipo, nombre, modelo, anyo?.toInt())
-      )
-    } else {
-      val id = args.vehiculo?.id
-      viewModel.modifyRevision(
-        Revision(tipo, nombre, modelo, anyo?.toInt(), id),
-      )
-    }
-
-    // Ir atrás
-    findNavController().popBackStack()
-  }
-
-  /**
-   * Permite obtener el índice que ocupa un elemento en un spinner.
-   * @param spinner El spinner donde buscar
-   * @param buscado El valor a buscar
-   * @return El índice del elemento, o 0 si no lo encuentra.
-   */
-  private fun spinnerIndexOf(spinner : Spinner, buscado : String) : Int {
-    val adapter : ArrayAdapter<String> = spinner.adapter as ArrayAdapter<String>
-    for (indice in (0..adapter.count)) {
-      if (adapter.getItem(indice) == buscado)
-        return indice
-    }
-    return 0
-  }
+  // TODO: ¿Quitar botón de guardado en este Fragment?
 }

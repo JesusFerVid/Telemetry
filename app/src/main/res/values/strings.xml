@@ -10,7 +10,8 @@
   <string name="nueva_revision_fragment_label">Nueva revisión</string>
   <string name="editar_revision_fragment_label">Editar revisión</string>
 
-  <string name="falta_nombre_vehiculo">Por favor, introduzca un nombre para el vehículo</string>
+  <string name="campo_obligatorio">Obligatorio</string>
+  <string name="faltan_campos_obligatorios">Rellene los campos obligatorios</string>
   <string name="guardar">Guardar</string>
   <string name="editar">Editar</string>
   <string name="confirmacion_borrar">¿Seguro que quieres borrar este elemento?</string>
@@ -48,12 +49,14 @@
   <string name="km_revision">Kilometraje en la revisión</string>
   <string name="km_siguiente_revision">Kilometraje para la próxima revisión</string>
   <string name="observaciones_revision">Observaciones</string>
+  <string name="editar_revision">Editar propiedades de revisión</string>
 
   <!-- Editar Línea Revisión -->
   <string name="lineas_revision_titulo">Acciones realizadas</string>
   <string name="lineas_revision_ayuda">Pulse un elemento para editarlo</string>
   <string name="LineaRevision_realizada">Realizada</string>
   <string name="LineaRevision_no_realizada">No realizada</string>
+  <string name="editar_linea_revision">Editar línea de revisión</string>
 
   <!-- Todos los tipos de líneas de revisión -->
   <string name="cam_neu">Cambio de neumáticos</string>

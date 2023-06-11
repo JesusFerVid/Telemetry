@@ -9,12 +9,14 @@ import com.jesusfervid.telemetry.repository.LineaRevisionRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class LineaRevisionViewModel (app : Application) : AndroidViewModel(app) {
+class LineasRevisionViewModel (app : Application) : AndroidViewModel(app) {
   val lineasLD = MutableLiveData<List<LineaRevision>>()
 
   init {
     LineaRevisionRepository(getApplication<Application>().applicationContext)
   }
+
+  // TODO: ¿Actualizar la lista en cada método?
 
   // Estas funciones llaman al método homónimo del repositorio y actualizan el LiveData.
   // Utilizan corrutinas, para no bloquear el hilo principal.

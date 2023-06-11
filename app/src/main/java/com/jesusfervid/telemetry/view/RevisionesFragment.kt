@@ -76,8 +76,8 @@ class RevisionesFragment : Fragment() {
   /** Establece Listeners para operaciones de añadir, editar y borrar */
   private fun initializeCRUD() {
     binding.fabNuevaRevision.setOnClickListener {
-      // Pasamos un null si queremos crear un nuevo item
-      val action = RevisionesFragmentDirections.actionEditarRevision(null)
+      // Pasamos null como revisión y un vehículo si queremos crear un nuevo item
+      val action = RevisionesFragmentDirections.actionEditarRevision(null, args.vehiculo)
       findNavController().navigate(action)
     }
 
@@ -85,7 +85,8 @@ class RevisionesFragment : Fragment() {
     revisionesAdapter.onRevisionClickListener = object : RevisionesAdapter.OnRevisionClickListener {
       // Editar item
       override fun onRevisionClick(revision : Revision?) {
-        val action = RevisionesFragmentDirections.actionEditarRevision(revision)
+        // Pasamos la revisión y null como vehículo para modificar una revisión existente
+        val action = RevisionesFragmentDirections.actionEditarRevision(revision, null)
         findNavController().navigate(action)
       }
 

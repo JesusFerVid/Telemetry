@@ -37,22 +37,7 @@
       android:name="vehiculo"
       app:argType="com.jesusfervid.telemetry.model.Vehiculo"/>
     <action
-      android:id="@+id/actionDetalleRevision"
-      app:destination="@id/DetalleRevisionFragment"/>
-    <action
       android:id="@+id/actionEditarRevision"
-      app:destination="@id/EditarRevisionFragment"/>
-  </fragment>
-  <fragment
-    android:id="@+id/DetalleRevisionFragment"
-    android:name="com.jesusfervid.telemetry.view.DetalleRevisionFragment"
-    android:label="@string/detalle_revision_fragment_label"
-    tools:layout="@layout/fragment_detalle_revision">
-    <argument
-      android:name="revision"
-      app:argType="com.jesusfervid.telemetry.model.Revision"/>
-    <action
-      android:id="@+id/actionDetalleAEditarRevision"
       app:destination="@id/EditarRevisionFragment"/>
   </fragment>
   <fragment
@@ -63,6 +48,10 @@
     <argument
       android:name="revision"
       app:argType="com.jesusfervid.telemetry.model.Revision"
+      app:nullable="true"/>
+    <argument
+      android:name="vehiculo"
+      app:argType="com.jesusfervid.telemetry.model.Vehiculo"
       app:nullable="true"/>
   </fragment>
 </navigation>

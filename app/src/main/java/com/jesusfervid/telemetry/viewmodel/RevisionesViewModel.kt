@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel para RevisionesFragment, DetalleRevisionFragment y EditarRevisionFragment
+ * ViewModel para RevisionesFragment y EditarRevisionFragment
  */
 class RevisionesViewModel(app : Application) : AndroidViewModel(app) {
   val revisionesLD = MutableLiveData<List<Revision>>()
