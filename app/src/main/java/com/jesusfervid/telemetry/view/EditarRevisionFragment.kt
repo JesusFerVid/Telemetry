@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jesusfervid.telemetry.R
@@ -38,7 +39,7 @@ class EditarRevisionFragment : Fragment() {
 
   lateinit var lineasAdapter : LineasRevisionAdapter
 
-  // Una copia de la revisión que estamos editando, para pasarla entre métodos y diálogos
+  // Una copia de la revisión que estamos editando, para pasarla entre métodos y fragments
   private lateinit var revisionEditando : Revision
 
   override fun onCreateView(
@@ -58,6 +59,11 @@ class EditarRevisionFragment : Fragment() {
     initializeRecyclerView()
     initializeBotones()
     comprobarNuevoItem()
+
+    // Usamos un observer para actualizar la lista cuando haya cambios
+    lineasViewModel.lineasLD.observe(viewLifecycleOwner, Observer<List<LineaRevision>> { revisiones ->
+      lineasAdapter.setListaLineasRevision(revisiones)
+    })
   }
 
   override fun onDestroyView() {

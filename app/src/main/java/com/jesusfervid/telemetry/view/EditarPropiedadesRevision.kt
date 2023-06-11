@@ -1,21 +1,22 @@
-package com.jesusfervid.telemetry.viewmodel
+package com.jesusfervid.telemetry.view
 
 import android.app.DatePickerDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.jesusfervid.telemetry.R
-import com.jesusfervid.telemetry.databinding.DialogEditarRevisionBinding
+import com.jesusfervid.telemetry.databinding.FragmentEditarPropiedadesRevisionBinding
 import com.jesusfervid.telemetry.model.Revision
+import com.jesusfervid.telemetry.viewmodel.RevisionesViewModel
 import java.util.Calendar
 
-class EditarRevisionDialogFragment(private val revision : Revision) : DialogFragment() {
-  private var _binding: DialogEditarRevisionBinding? = null
+class EditarPropiedadesRevision : Fragment() {
+  private var _binding: FragmentEditarPropiedadesRevisionBinding? = null
   private val binding get() = _binding!!
 
   private val calendario : Calendar = Calendar.getInstance()
@@ -27,7 +28,7 @@ class EditarRevisionDialogFragment(private val revision : Revision) : DialogFrag
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    _binding = DialogEditarRevisionBinding.inflate(inflater, container, false)
+    _binding = FragmentEditarPropiedadesRevisionBinding.inflate(inflater, container, false)
     return binding.root
   }
 
@@ -36,14 +37,6 @@ class EditarRevisionDialogFragment(private val revision : Revision) : DialogFrag
 
     initializeCalendario()
     initializeBotones()
-  }
-
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    // TODO: Comentario aquí
-//    return Dialog(requireContext(), theme)
-    val dialog = super.onCreateDialog(savedInstanceState)
-    dialog.setTitle(getString(R.string.editar_revision))
-    return dialog
   }
 
   override fun onDestroyView() {
@@ -75,7 +68,6 @@ class EditarRevisionDialogFragment(private val revision : Revision) : DialogFrag
   private fun initializeBotones() {
     binding.btGuardarRevision.setOnClickListener {
       guardarDatos()
-      dismiss()
     }
   }
 
@@ -126,5 +118,8 @@ class EditarRevisionDialogFragment(private val revision : Revision) : DialogFrag
         revision.id
       )
     )
+
+    // Ir atrás
+    findNavController().popBackStack()
   }
 }

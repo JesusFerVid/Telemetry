@@ -9,6 +9,8 @@
   <string name="detalle_revision_fragment_label">Ver revisión</string>
   <string name="nueva_revision_fragment_label">Nueva revisión</string>
   <string name="editar_revision_fragment_label">Editar revisión</string>
+  <string name="editar_propiedades_revision_fragment_label">Editar propiedades de revisión</string>
+  <string name="editar_linea_revision_fragment_label">Editar línea de revisión</string>
 
   <string name="campo_obligatorio">Obligatorio</string>
   <string name="faltan_campos_obligatorios">Rellene los campos obligatorios</string>

@@ -53,5 +53,29 @@
       android:name="vehiculo"
       app:argType="com.jesusfervid.telemetry.model.Vehiculo"
       app:nullable="true"/>
+    <action
+      android:id="@+id/actionEditarPropiedadesRevision"
+      app:destination="@id/EditarPropiedadesRevision"/>
+    <action
+      android:id="@+id/actionEditarLineaRevision"
+      app:destination="@id/EditarLineaRevisionFragment"/>
+  </fragment>
+  <fragment
+    android:id="@+id/EditarPropiedadesRevision"
+    android:name="com.jesusfervid.telemetry.view.EditarPropiedadesRevision"
+    android:label="@string/editar_propiedades_revision_fragment_label"
+    tools:layout="@layout/fragment_editar_propiedades_revision">
+    <argument
+      android:name="revision"
+      app:argType="com.jesusfervid.telemetry.model.Revision"/>
+  </fragment>
+  <fragment
+    android:id="@+id/EditarLineaRevisionFragment"
+    android:name="com.jesusfervid.telemetry.view.EditarLineaRevisionFragment"
+    android:label="@string/editar_linea_revision_fragment_label"
+    tools:layout="@layout/fragment_editar_linea_revision">
+    <argument
+      android:name="lineaRevision"
+      app:argType="com.jesusfervid.telemetry.model.LineaRevision"/>
   </fragment>
 </navigation>
