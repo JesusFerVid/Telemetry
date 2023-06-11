@@ -107,16 +107,16 @@ class EditarRevisionFragment : Fragment() {
     binding.tvEditarRevisionObservaciones.text = ""
 
     revisionViewModel.addRevision(revisionEditando)
-
     crearLineasRevision()
   }
 
   /** Crea (y persiste) las líneas de esta revisión, para ser modificadas después. */
   private fun crearLineasRevision() {
+    Thread.sleep(1000)
     val tiposRevision : Array<String> = resources.getStringArray(R.array.lr_genericas)
     for (tipo in tiposRevision) {
       lineasViewModel.addLineaRevision(
-        LineaRevision(revisionEditando.id!!, tipo, false, null)
+        LineaRevision(revisionViewModel.newId!!, tipo, false, null)
       )
     }
   }

@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
  */
 class RevisionesViewModel(app : Application) : AndroidViewModel(app) {
   val revisionesLD = MutableLiveData<List<Revision>>()
+  var newId : Long? = null
 
   init {
     RevisionRepository(getApplication<Application>().applicationContext)
@@ -22,7 +23,7 @@ class RevisionesViewModel(app : Application) : AndroidViewModel(app) {
   // Estas funciones llaman al método homónimo del repositorio y actualizan el LiveData.
   // Utilizan corrutinas, para no bloquear el hilo principal.
   fun addRevision(revision : Revision) = viewModelScope.launch(Dispatchers.IO) {
-    RevisionRepository.add(revision)
+    newId = RevisionRepository.add(revision)
   }
 
   fun addRevisiones(revisiones : List<Revision>) = viewModelScope.launch(Dispatchers.IO) {
