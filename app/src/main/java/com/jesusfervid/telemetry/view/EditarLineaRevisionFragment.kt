@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.jesusfervid.telemetry.databinding.FragmentEditarPropiedadesRevisionBinding
 
 class EditarLineaRevisionFragment : Fragment() {
   private var _binding: FragmentEditarPropiedadesRevisionBinding? = null
   private val binding get() = _binding!!
+
+  // Argumentos
+  val args : EditarLineaRevisionFragmentArgs by navArgs()
 
   override fun onCreateView(
     inflater: LayoutInflater,

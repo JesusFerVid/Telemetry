@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.jesusfervid.telemetry.R
 import com.jesusfervid.telemetry.databinding.FragmentEditarPropiedadesRevisionBinding
 import com.jesusfervid.telemetry.model.Revision
@@ -19,9 +20,12 @@ class EditarPropiedadesRevision : Fragment() {
   private var _binding: FragmentEditarPropiedadesRevisionBinding? = null
   private val binding get() = _binding!!
 
-  private val calendario : Calendar = Calendar.getInstance()
+  // Argumentos
+  val args : EditarPropiedadesRevisionArgs by navArgs()
 
   private val revisionViewModel : RevisionesViewModel by activityViewModels()
+
+  private val calendario : Calendar = Calendar.getInstance()
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -35,6 +39,7 @@ class EditarPropiedadesRevision : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
+    cargarDatos()
     initializeCalendario()
     initializeBotones()
   }
@@ -73,6 +78,7 @@ class EditarPropiedadesRevision : Fragment() {
 
   /** Rellena los campos con los datos del item pasado al Fragment */
   private fun cargarDatos() {
+    val revision = args.revision
     binding.tietFechaRevision.setText(revision.fecha)
     binding.tietKmRevision.setText(revision.km.toString())
     binding.tietKmSiguienteRevision.setText(revision.kmSiguiente.toString())
@@ -88,9 +94,10 @@ class EditarPropiedadesRevision : Fragment() {
   /** Guarda el item nuevo o editado */
   private fun guardarDatos() {
     // Recuperamos datos
+    val revision = args.revision
     val fecha : String  = binding.tietFechaRevision.text.toString()
     val km : String = binding.tietKmRevision.text.toString()
-    var kmSiguiente : String  = binding.tietKmSiguienteRevision.text.toString()
+    val kmSiguiente : String  = binding.tietKmSiguienteRevision.text.toString()
     var observaciones : String?  = binding.tietObservacionesRevision.text.toString()
 
     // Validación

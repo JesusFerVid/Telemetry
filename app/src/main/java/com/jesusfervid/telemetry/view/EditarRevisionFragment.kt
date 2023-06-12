@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jesusfervid.telemetry.R
@@ -15,7 +16,6 @@ import com.jesusfervid.telemetry.adapter.LineasRevisionAdapter
 import com.jesusfervid.telemetry.databinding.FragmentEditarRevisionBinding
 import com.jesusfervid.telemetry.model.LineaRevision
 import com.jesusfervid.telemetry.model.Revision
-import com.jesusfervid.telemetry.viewmodel.EditarRevisionDialogFragment
 import com.jesusfervid.telemetry.viewmodel.LineasRevisionViewModel
 import com.jesusfervid.telemetry.viewmodel.RevisionesViewModel
 
@@ -56,9 +56,10 @@ class EditarRevisionFragment : Fragment() {
   override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
+    // TODO: ESTO SE HARÁ AL VOLVER DE EDITAR?
     initializeRecyclerView()
-    initializeBotones()
     comprobarNuevoItem()
+    initializeBotones()
 
     // Usamos un observer para actualizar la lista cuando haya cambios
     lineasViewModel.lineasLD.observe(viewLifecycleOwner, Observer<List<LineaRevision>> { revisiones ->
@@ -82,9 +83,19 @@ class EditarRevisionFragment : Fragment() {
   }
 
   private fun initializeBotones() {
+    // Click en el botón de editar propiedades
     binding.btEditarRevision.setOnClickListener {
-      EditarRevisionDialogFragment(revisionEditando)
-        .show(childFragmentManager, "editar_revision_dialog")
+      val action = EditarRevisionFragmentDirections.actionEditarPropiedadesRevision(revisionEditando)
+      findNavController().navigate(action)
+    }
+
+    // Implementamos la interfaz de LineasRevisionAdapter
+    lineasAdapter.onLineasRevisionClickListener = object : LineasRevisionAdapter.OnLineasRevisionClickListener {
+      // Click en la línea de revisión
+      override fun onLineaRevisionClick(linea : LineaRevision?) {
+        val action = EditarRevisionFragmentDirections.actionEditarLineaRevision(linea!!)
+        findNavController().navigate(action)
+      }
     }
   }
 
@@ -94,7 +105,6 @@ class EditarRevisionFragment : Fragment() {
       (requireActivity() as AppCompatActivity).supportActionBar?.title =
         getString(R.string.nueva_revision_fragment_label)
       crearRevision()
-      // TODO: Invocar Dialog
     } else {
       (requireActivity() as AppCompatActivity).supportActionBar?.title =
         getString(R.string.editar_revision_fragment_label)
@@ -118,13 +128,15 @@ class EditarRevisionFragment : Fragment() {
 
   /** Crea (y persiste) las líneas de esta revisión, para ser modificadas después. */
   private fun crearLineasRevision() {
-    Thread.sleep(1000)
+    Thread.sleep(600)
     val tiposRevision : Array<String> = resources.getStringArray(R.array.lr_genericas)
     for (tipo in tiposRevision) {
       lineasViewModel.addLineaRevision(
         LineaRevision(revisionViewModel.newId!!, tipo, false, null)
       )
     }
+    Thread.sleep(600)
+    lineasViewModel.getLineasRevision(revisionViewModel.newId!!)
   }
 
   /** Rellena los campos con los datos del item pasado al Fragment */

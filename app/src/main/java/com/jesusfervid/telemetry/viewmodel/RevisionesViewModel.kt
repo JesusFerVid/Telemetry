@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
  */
 class RevisionesViewModel(app : Application) : AndroidViewModel(app) {
   val revisionesLD = MutableLiveData<List<Revision>>()
+
+  // Id de la última revisión añadida
   var newId : Long? = null
 
   init {
