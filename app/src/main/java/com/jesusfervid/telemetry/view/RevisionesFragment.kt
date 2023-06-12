@@ -56,6 +56,9 @@ class RevisionesFragment : Fragment() {
     viewModel.revisionesLD.observe(viewLifecycleOwner, Observer<List<Revision>> { revisiones ->
       revisionesAdapter.setListaRevisiones(revisiones)
     })
+
+    viewModel.revisionEditando = null
+    viewModel.newId = null
   }
 
   override fun onDestroyView() {

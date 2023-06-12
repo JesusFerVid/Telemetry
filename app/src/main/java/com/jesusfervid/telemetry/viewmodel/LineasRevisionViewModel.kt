@@ -16,8 +16,6 @@ class LineasRevisionViewModel (app : Application) : AndroidViewModel(app) {
     LineaRevisionRepository(getApplication<Application>().applicationContext)
   }
 
-  // TODO: ¿Actualizar la lista en cada método?
-
   // Estas funciones llaman al método homónimo del repositorio y actualizan el LiveData.
   // Utilizan corrutinas, para no bloquear el hilo principal.
   fun addLineaRevision(linea : LineaRevision) = viewModelScope.launch(Dispatchers.IO) {

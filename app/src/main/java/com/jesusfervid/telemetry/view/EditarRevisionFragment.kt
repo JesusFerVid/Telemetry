@@ -165,7 +165,4 @@ class EditarRevisionFragment : Fragment() {
     val id = revisionViewModel.revisionEditando?.id ?: revisionViewModel.newId
     lineasViewModel.getLineasRevision(id!!)
   }
-
-  // TODO: Diálogo editar línea revisión
-  // TODO: Guardar línea revisión
 }
