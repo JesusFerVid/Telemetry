@@ -76,6 +76,7 @@ class RevisionesFragment : Fragment() {
   /** Establece Listeners para operaciones de añadir, editar y borrar */
   private fun initializeCRUD() {
     binding.fabNuevaRevision.setOnClickListener {
+      viewModel.crearNueva = true
       // Pasamos null como revisión y un vehículo si queremos crear un nuevo item
       val action = RevisionesFragmentDirections.actionEditarRevision(null, args.vehiculo)
       findNavController().navigate(action)

@@ -18,6 +18,14 @@ class RevisionesViewModel(app : Application) : AndroidViewModel(app) {
   // Id de la última revisión añadida
   var newId : Long? = null
 
+  // Si debemos crear una nueva revisión o ya está creada
+  // Esto se debe a que podemos acceder a EditarRevisionFragment volviendo atrás
+  // mientras creamos una revisión
+  var crearNueva : Boolean = false
+
+  // Revision que se está editando ahora mismo
+  var revisionEditando : Revision? = null
+
   init {
     RevisionRepository(getApplication<Application>().applicationContext)
   }

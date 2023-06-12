@@ -38,7 +38,7 @@ class EditarPropiedadesRevision : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-
+    revisionViewModel.crearNueva = false
     cargarDatos()
     initializeCalendario()
     initializeBotones()
@@ -51,23 +51,31 @@ class EditarPropiedadesRevision : Fragment() {
 
   /** Crea un calendario para el cuadro de fecha */
   private fun initializeCalendario() {
+    binding.tilFechaRevision.setEndIconOnClickListener {
+      mostrarCalendario()
+    }
     binding.tietFechaRevision.setOnClickListener {
-      val dia = calendario.get(Calendar.DAY_OF_MONTH)
-      val mes = calendario.get(Calendar.MONTH)
-      val anyo = calendario.get(Calendar.YEAR)
+      mostrarCalendario()
+    }
+  }
 
-      // Pasamos un contexto, un listener y el año, mes y día
-      // El listener tiene como parámetros: view (ignorada), año, mes y día
-      val dialogoFecha = DatePickerDialog(requireContext(), { _, a, m, d ->
+  private fun mostrarCalendario() {
+    val dia = calendario.get(Calendar.DAY_OF_MONTH)
+    val mes = calendario.get(Calendar.MONTH)
+    val anyo = calendario.get(Calendar.YEAR)
+
+    // Pasamos un contexto, un listener y el año, mes y día
+    // El listener tiene como parámetros: view (ignorada), año, mes y día
+    val dialogoFecha = DatePickerDialog(
+      requireContext(), { _, a, m, d ->
         // Usamos una cadena formateada
         val fecha = "$d/${m + 1}/$a"
         binding.tietFechaRevision.setText(fecha)
       },
-        anyo, mes, dia
-      )
-      // Como con cualquier diálogo, no olvidemos el crucial paso final: mostrarlo
-      dialogoFecha.show()
-    }
+      anyo, mes, dia
+    )
+    // Como con cualquier diálogo, no olvidemos el crucial paso final: mostrarlo
+    dialogoFecha.show()
   }
 
   private fun initializeBotones() {
@@ -101,7 +109,7 @@ class EditarPropiedadesRevision : Fragment() {
     var observaciones : String?  = binding.tietObservacionesRevision.text.toString()
 
     // Validación
-    if (fecha.isBlank() || km.isBlank() || kmSiguiente.isBlank()) {
+    if (fecha.isBlank() || km.isBlank() || km == "0"|| kmSiguiente.isBlank() || kmSiguiente == "0") {
       Toast.makeText(
         requireContext(),
         getString(R.string.faltan_campos_obligatorios),
@@ -114,17 +122,20 @@ class EditarPropiedadesRevision : Fragment() {
     if (observaciones.isNullOrBlank())
       observaciones = null
 
-    // Actualizamos la revisión en la BD
-    revisionViewModel.modifyRevision(
+
+    // Actualizamos la revisión en la BD y el viewModel
+    val id = revision.id ?: revisionViewModel.newId
+    val nuevaRevision =
       Revision(
         revision.id_vehiculo,
         fecha,
         km.toInt(),
         kmSiguiente.toInt(),
         observaciones?.toString(),
-        revision.id
+        id
       )
-    )
+    revisionViewModel.modifyRevision(nuevaRevision)
+    revisionViewModel.revisionEditando = nuevaRevision
 
     // Ir atrás
     findNavController().popBackStack()

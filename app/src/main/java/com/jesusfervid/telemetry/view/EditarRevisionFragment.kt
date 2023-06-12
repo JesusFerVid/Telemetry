@@ -39,8 +39,6 @@ class EditarRevisionFragment : Fragment() {
 
   lateinit var lineasAdapter : LineasRevisionAdapter
 
-  // Una copia de la revisión que estamos editando, para pasarla entre métodos y fragments
-  private lateinit var revisionEditando : Revision
 
   override fun onCreateView(
     inflater : LayoutInflater,
@@ -56,7 +54,6 @@ class EditarRevisionFragment : Fragment() {
   override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    // TODO: ESTO SE HARÁ AL VOLVER DE EDITAR?
     initializeRecyclerView()
     comprobarNuevoItem()
     initializeBotones()
@@ -85,7 +82,7 @@ class EditarRevisionFragment : Fragment() {
   private fun initializeBotones() {
     // Click en el botón de editar propiedades
     binding.btEditarRevision.setOnClickListener {
-      val action = EditarRevisionFragmentDirections.actionEditarPropiedadesRevision(revisionEditando)
+      val action = EditarRevisionFragmentDirections.actionEditarPropiedadesRevision(revisionViewModel.revisionEditando!!)
       findNavController().navigate(action)
     }
 
@@ -101,10 +98,17 @@ class EditarRevisionFragment : Fragment() {
 
   /** Comprueba si debemos añadir o editar */
   private fun comprobarNuevoItem() {
+    revisionViewModel.revisionEditando = revisionViewModel.revisionEditando ?: args.revision
     if (esNuevoItem){
       (requireActivity() as AppCompatActivity).supportActionBar?.title =
         getString(R.string.nueva_revision_fragment_label)
-      crearRevision()
+      // Si volvemos de editar propiedades o líneas, no creamos otra revisión más,
+      // sino que cargamos los datos de esa revisión.
+      if (revisionViewModel.crearNueva) {
+        crearRevision()
+      } else {
+        cargarRevision()
+      }
     } else {
       (requireActivity() as AppCompatActivity).supportActionBar?.title =
         getString(R.string.editar_revision_fragment_label)
@@ -115,53 +119,53 @@ class EditarRevisionFragment : Fragment() {
 
   /** Crea (y persiste) una nueva revisión, para modificarla después **/
   private fun crearRevision() {
-    revisionEditando  = Revision(args.vehiculo?.id!!, "", 0, 0, "")
+    revisionViewModel.revisionEditando  = Revision(args.vehiculo?.id!!, "", 0, 0, "")
 
     binding.tvEditarRevisionFecha.text = ""
     binding.tvEditarRevisionKm.text = ""
     binding.tvEditarRevisionKmSiguiente.text = ""
     binding.tvEditarRevisionObservaciones.text = ""
 
-    revisionViewModel.addRevision(revisionEditando)
+    revisionViewModel.addRevision(revisionViewModel.revisionEditando!!)
+    Thread.sleep(600)
     crearLineasRevision()
   }
 
   /** Crea (y persiste) las líneas de esta revisión, para ser modificadas después. */
   private fun crearLineasRevision() {
-    Thread.sleep(600)
     val tiposRevision : Array<String> = resources.getStringArray(R.array.lr_genericas)
     for (tipo in tiposRevision) {
       lineasViewModel.addLineaRevision(
         LineaRevision(revisionViewModel.newId!!, tipo, false, null)
       )
     }
-    Thread.sleep(600)
+    Thread.sleep(800)
     lineasViewModel.getLineasRevision(revisionViewModel.newId!!)
   }
 
-  /** Rellena los campos con los datos del item pasado al Fragment */
+  /** Rellena los campos con los datos del item pasado por parámetro */
   private fun cargarRevision() {
+    val revision = revisionViewModel.revisionEditando!!
+
     // Recuperar datos
-    revisionEditando = args.revision!!
-    binding.tvEditarRevisionFecha.text = revisionEditando.fecha
-    binding.tvEditarRevisionKm.text = revisionEditando.km.toString()
-    binding.tvEditarRevisionKmSiguiente.text = revisionEditando.kmSiguiente.toString()
+    binding.tvEditarRevisionFecha.text = revision.fecha
+    binding.tvEditarRevisionKm.text = revision.km.toString()
+    binding.tvEditarRevisionKmSiguiente.text = revision.kmSiguiente.toString()
 
     binding.tvEditarRevisionObservaciones.text =
-      when (revisionEditando.observaciones) {
+      when (revision.observaciones) {
         null -> ""
-        else -> revisionEditando.observaciones
+        else -> revision.observaciones
       }
 
     cargarLineasRevision()
   }
 
   private fun cargarLineasRevision() {
-    lineasViewModel.getLineasRevision(revisionEditando.id!!)
+    val id = revisionViewModel.revisionEditando?.id ?: revisionViewModel.newId
+    lineasViewModel.getLineasRevision(id!!)
   }
 
   // TODO: Diálogo editar línea revisión
   // TODO: Guardar línea revisión
-
-  // TODO: ¿Quitar botón de guardado en este Fragment?
 }
