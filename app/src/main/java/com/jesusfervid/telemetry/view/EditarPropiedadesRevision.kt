@@ -38,6 +38,7 @@ class EditarPropiedadesRevision : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
     revisionViewModel.crearNueva = false
     cargarDatos()
     initializeCalendario()
@@ -90,13 +91,7 @@ class EditarPropiedadesRevision : Fragment() {
     binding.tietFechaRevision.setText(revision.fecha)
     binding.tietKmRevision.setText(revision.km.toString())
     binding.tietKmSiguienteRevision.setText(revision.kmSiguiente.toString())
-
-    binding.tietObservacionesRevision.setText(
-      when (revision.observaciones) {
-        null -> ""
-        else -> revision.observaciones
-      }
-    )
+    binding.tietObservacionesRevision.setText(revision.observaciones ?: "")
   }
 
   /** Guarda el item nuevo o editado */

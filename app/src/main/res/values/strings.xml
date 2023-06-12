@@ -60,6 +60,7 @@
   <string name="LineaRevision_no_realizada">No realizada</string>
   <string name="editar_linea_revision">Editar línea de revisión</string>
 
+
   <!-- Todos los tipos de líneas de revisión -->
   <string name="cam_neu">Cambio de neumáticos</string>
   <string name="cru_neu">Cruce de neumáticos</string>
@@ -97,8 +98,5 @@
     <item>@string/esc</item>
     <item>@string/c_dis</item>
   </string-array>
-
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
