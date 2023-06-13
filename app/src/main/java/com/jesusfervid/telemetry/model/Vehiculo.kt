@@ -8,9 +8,9 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "vehiculo")
 @Parcelize
 data class Vehiculo(
- val tipo : String,
- val nombre : String,
- val modelo : String? = null,
- val anyo : Int? = null,
+  val tipo : String,
+  val nombre : String,
+  val modelo : String? = null,
+  val anyo : Int? = null,
   @PrimaryKey(autoGenerate = true) val id : Long? = null,
 ) : Parcelable
